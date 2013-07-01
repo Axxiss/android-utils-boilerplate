@@ -1,0 +1,83 @@
+group = 'io.github.axxiss'
+version = '0.1.0'
+description = 'Android utilities boilerplate library'
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+
+def isSnapshot = version.contains("SNAPSHOT")
+
+def mavenCentralRepo = isSnapshot ?
+    'https://oss.sonatype.org/content/repositories/snapshots/' :
+    'https://oss.sonatype.org/service/local/staging/deploy/maven2';
+
+
+def pomConfig = {
+    name 'Android Utils Boilerplate'
+    description 'Android utilities boilerplate library'
+    url 'https://github.com/Axxiss/android-utils-boilerplate'
+    inceptionYear '2013'
+    organization {
+        name 'Alexis Mas'
+        url 'http://about.me/alexismas'
+    }
+
+    scm {
+        url "https://github.com/Axxiss/android-utils-boilerplate"
+        connection "scm:git:https://github.com/Axxiss/android-utils-boilerplate.git"
+        developerConnection "scm:git:git@github.com:Axxiss/android-utils-boilerplate.git"
+    }
+    licenses {
+        license {
+            name 'GNU AFFERO GENERAL PUBLIC LICENSE'
+            url 'http://www.gnu.org/licenses/agpl-v3.html'
+            comments 'See http://jpos.org/license for more details.'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'axxiss'
+            name 'Alexis Mas'
+            email 'alexismas@about.me'
+        }
+    }
+}
+
+signing {
+    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+
+configure(install.repositories.mavenInstaller) {
+    pom.project pomConfig
+}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project pomConfig
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            /*
+            repository(url: mavenCentralRepo) {
+                authentication(userName: mavenCentralUsername, password: mavenCentralPassword)
+            }
+            */
+            repository(url: 'file:///opt/local/maven')
+        }
+    }
+}
+
+
+
