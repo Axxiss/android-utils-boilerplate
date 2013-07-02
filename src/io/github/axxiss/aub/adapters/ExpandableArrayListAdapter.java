@@ -10,8 +10,6 @@ import java.util.Arrays;
  * @author Axxiss
  */
 public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableListAdapter {
-    private static final String TAG = "ExpandableArrayListAdapter";
-
     final protected ArrayList<T> mGroups = new ArrayList<T>();
 
     final protected ArrayList<ArrayList<U>> mChildren = new ArrayList<ArrayList<U>>();
@@ -81,10 +79,17 @@ public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableLis
             return;
         }
 
-        mGroups.ensureCapacity(items.length);
+        int length = items.length;
+
+        mGroups.ensureCapacity(mGroups.size() + length);
         mGroups.addAll(Arrays.asList(items));
 
-        mChildren.ensureCapacity(items.length);
+        mChildren.ensureCapacity(mChildren.size() + length);
+
+        for (int i = 0; i < length; i++) {
+            mChildren.add(new ArrayList<U>());
+        }
+
         notifyDataSetChanged();
     }
 }

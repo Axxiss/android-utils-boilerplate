@@ -1,4 +1,6 @@
-android-list-utils
+Android Utils Boilerplate
 ==================
 
-Android list utils
+Welcome to Android Utils Boilerplate!
+
+The purpose of this project it's simple, provide boilerplate code for common android development.

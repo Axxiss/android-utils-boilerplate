@@ -42,7 +42,6 @@ def pomConfig = {
         license {
             name 'GNU AFFERO GENERAL PUBLIC LICENSE'
             url 'http://www.gnu.org/licenses/agpl-v3.html'
-            comments 'See http://jpos.org/license for more details.'
             distribution 'repo'
         }
     }
