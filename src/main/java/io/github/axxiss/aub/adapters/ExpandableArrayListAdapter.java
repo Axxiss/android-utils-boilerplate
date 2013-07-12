@@ -1,23 +1,28 @@
-package io.github.axxiss.aub.adapters;
+package main.java.io.github.axxiss.aub.adapters;
 
-import android.content.Context;
 import android.widget.BaseExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
+ * {@link android.widget.Adapter} to handle {@link android.widget.ExpandableListView} items.
+ *
  * @author Axxiss
  */
 public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableListAdapter {
+
+    /**
+     * List groups.
+     */
     final protected ArrayList<T> mGroups = new ArrayList<T>();
 
+    /**
+     * Group's children.
+     */
     final protected ArrayList<ArrayList<U>> mChildren = new ArrayList<ArrayList<U>>();
 
-    final protected Context mContext;
-
-    public ExpandableArrayListAdapter(final Context context) {
-        mContext = context;
+    public ExpandableArrayListAdapter() {
     }
 
     @Override
@@ -47,7 +52,7 @@ public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableLis
 
     @Override
     public long getChildId(final int groupPosition, final int childPosition) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return childPosition;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -60,8 +65,14 @@ public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableLis
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public void setChildren(int groupPosition, U[] items) {
-        if (items == null || items.length == 0 || groupPosition < 0 || groupPosition > mGroups.size()) {
+    /**
+     * Set a group's children.
+     *
+     * @param groupPosition the group.
+     * @param children      children to add
+     */
+    public void setChildren(int groupPosition, U[] children) {
+        if (children == null || children.length == 0 || groupPosition < 0 || groupPosition > mGroups.size()) {
             return;
         }
 
@@ -70,10 +81,15 @@ public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableLis
         }
 
         mChildren.get(groupPosition).clear();
-        mChildren.get(groupPosition).addAll(Arrays.asList(items));
+        mChildren.get(groupPosition).addAll(Arrays.asList(children));
         notifyDataSetChanged();
     }
 
+    /**
+     * Add a list of groups
+     *
+     * @param items the groups.
+     */
     public void addGroups(T[] items) {
         if (items == null || items.length == 0) {
             return;

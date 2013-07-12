@@ -1,18 +1,28 @@
-group = 'io.github.axxiss'
-version = '0.1.0'
-description = 'Android utilities boilerplate library'
-
-
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 
+group = 'io.github.axxiss'
+version = '0.1.0-SNAPSHOT'
+description = 'Android utilities boilerplate library'
+
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
-repositories {
-    mavenCentral()
+
+sourceSets {
+    main {
+        java {
+            srcDirs {
+                'src/main/java'
+                'gen'
+            }
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
 }
 
 
@@ -23,60 +33,54 @@ def mavenCentralRepo = isSnapshot ?
     'https://oss.sonatype.org/service/local/staging/deploy/maven2';
 
 
-def pomConfig = {
-    name 'Android Utils Boilerplate'
-    description 'Android utilities boilerplate library'
-    url 'https://github.com/Axxiss/android-utils-boilerplate'
-    inceptionYear '2013'
-    organization {
-        name 'Alexis Mas'
-        url 'http://about.me/alexismas'
-    }
-
-    scm {
-        url "https://github.com/Axxiss/android-utils-boilerplate"
-        connection "scm:git:https://github.com/Axxiss/android-utils-boilerplate.git"
-        developerConnection "scm:git:git@github.com:Axxiss/android-utils-boilerplate.git"
-    }
-    licenses {
-        license {
-            name 'GNU AFFERO GENERAL PUBLIC LICENSE'
-            url 'http://www.gnu.org/licenses/agpl-v3.html'
-            distribution 'repo'
-        }
-    }
-    developers {
-        developer {
-            id 'axxiss'
-            name 'Alexis Mas'
-            email 'alexismas@about.me'
-        }
-    }
+repositories {
+    mavenCentral()
+    mavenLocal()
 }
 
+
 signing {
-    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
 
-
-configure(install.repositories.mavenInstaller) {
-    pom.project pomConfig
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier 'sources'
 }
-uploadArchives {
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier 'javadoc'
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom.projectIdentity.artifactId = 'android-utils-boilerplate'
+
+            artifact sourceJar
+
+            artifact javadocJar
+        }
+    }
+
     repositories {
-        mavenDeployer {
-            pom.project pomConfig
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-            /*
-            repository(url: mavenCentralRepo) {
-                authentication(userName: mavenCentralUsername, password: mavenCentralPassword)
+        maven {
+            credentials {
+                username sonatypeUser
+                password sonatypePass
             }
-            */
-            repository(url: 'file:///opt/local/maven')
+            url mavenCentralRepo
         }
     }
 }
 
 
+dependencies {
+    compile('com.google.android:android:4.1.1.4') {
+        transitive = false
+    }
+}
 

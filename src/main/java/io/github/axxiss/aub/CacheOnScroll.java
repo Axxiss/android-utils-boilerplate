@@ -1,4 +1,4 @@
-package io.github.axxiss.aub;
+package main.java.io.github.axxiss.aub;
 
 import android.widget.AbsListView;
 
@@ -11,14 +11,23 @@ import android.widget.AbsListView;
 public abstract class CacheOnScroll implements AbsListView.OnScrollListener {
     private static final String TAG = "CacheOnScroll";
 
+    /**
+     * Flag to indicate if data is being loaded.
+     */
     private boolean loading = true;
 
+    /**
+     * Current page number
+     */
     private int currentPage = 0;
 
+    /**
+     * Variable to determine when load finished.
+     */
     private int previousTotal = 0;
 
     /**
-     * Initialize the listener and get the initial data.
+     * Initialize the listener and get the initial data set.
      */
     public CacheOnScroll() {
         cacheOnBackground(0);
