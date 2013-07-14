@@ -1,7 +1,7 @@
 ---
 language: java
 
-before_install: "rm -rf $HOME/travis && git clone -b travis `git config --get remote.origin.url` target/travis && mv $HOME/travis/gradle.properties $HOME;"
+before_install: "rm -rf $HOME/target/travis && git clone -b travis `git config --get remote.origin.url` $HOME/target/travis && mv $HOME/target/travis/gradle.properties $HOME;"
 
 script: gradle clean publish
 
