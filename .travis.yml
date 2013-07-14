@@ -1,7 +1,0 @@
----
-language: java
-script: gradle clean publish
-env:
-  global:
-  - secure: ! 'A4ybQfvqOHNbo0lx2iHAo17oLX/XzYZERo+l1rRjhrqM+hZB+XW/uunzTB61/KtjCa2UtaqxwUy/u01KvCvsb1cVPk631dSNPpvnudGkZ5/rZqbQ//SHDxv0h1dhKvxHOpcnUzJOC4QK3FgTcalrt7pH6asmaP+nG8xSy+C3vdc='
-  - secure: ! 'K422T5ZQWe4fYJ1wX8zpK0b0r1muqCL/3tmG2T3oUzs8ToV3zf9npm8j4hCDAQDXQxokprXaZC/7J+gp4k1p3bzs+lGj8BYjzyBoQa1qikmYwdl1Cw9v2e6kCBvQWt1/EzYDfG/8bdaPMhzh9cHqCgcSKUEyLYm13yIm4VE1sm8='
