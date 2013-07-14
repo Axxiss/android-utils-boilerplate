@@ -3,13 +3,17 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-
 group = 'io.github.axxiss'
 version = '0.1.0-SNAPSHOT'
 description = 'Android utilities boilerplate library'
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
+
+if (hasProperty("propertiesPath")) {
+    Properties props = new Properties()
+    props.load(new FileInputStream(propertiesPath))
+}
 
 sourceSets {
     main {

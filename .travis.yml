@@ -1,9 +1,9 @@
 ---
 language: java
 
-before_install: "rm -rf $HOME/target/travis && git clone -b travis `git config --get remote.origin.url` $HOME/target/travis && mv $HOME/target/travis/gradle.properties $HOME;"
+before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
 
-script: gradle clean publish
+script: gradle clean publish -PpropertiesPath=target/travis
 
 # whitelist
 branches:
