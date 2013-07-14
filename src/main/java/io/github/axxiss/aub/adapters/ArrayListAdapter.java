@@ -1,4 +1,4 @@
-package main.java.io.github.axxiss.aub.adapters;
+package io.github.axxiss.aub.adapters;
 
 import android.content.Context;
 import android.view.View;
