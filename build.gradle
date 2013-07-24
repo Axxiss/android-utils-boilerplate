@@ -3,7 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-group = 'io.github.axxiss'
+group = 'io.github.axxiss.android'
 version = '0.1.0-SNAPSHOT'
 description = 'Android utilities boilerplate library'
 
@@ -47,6 +47,8 @@ signing {
     sign configurations.archives
 }
 
+
+
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
     classifier 'sources'
@@ -62,7 +64,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            pom.projectIdentity.artifactId = 'android-utils-boilerplate'
+            pom.projectIdentity.artifactId = 'utils-boilerplate'
             artifact sourceJar
 
             artifact javadocJar

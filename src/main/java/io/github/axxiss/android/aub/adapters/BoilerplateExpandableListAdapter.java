@@ -1,4 +1,4 @@
-package main.java.io.github.axxiss.aub.adapters;
+package io.github.axxiss.android.aub.adapters;
 
 import android.widget.BaseExpandableListAdapter;
 
@@ -10,7 +10,7 @@ import java.util.Arrays;
  *
  * @author Axxiss
  */
-public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableListAdapter {
+public abstract class BoilerplateExpandableListAdapter<T, U> extends BaseExpandableListAdapter {
 
     /**
      * List groups.
@@ -21,9 +21,6 @@ public abstract class ExpandableArrayListAdapter<T, U> extends BaseExpandableLis
      * Group's children.
      */
     final protected ArrayList<ArrayList<U>> mChildren = new ArrayList<ArrayList<U>>();
-
-    public ExpandableArrayListAdapter() {
-    }
 
     @Override
     public int getGroupCount() {

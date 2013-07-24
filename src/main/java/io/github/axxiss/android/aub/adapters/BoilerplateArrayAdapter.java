@@ -1,6 +1,5 @@
-package io.github.axxiss.aub.adapters;
+package io.github.axxiss.android.aub.adapters;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,22 +14,11 @@ import java.util.Arrays;
  *
  * @author Axxiss
  */
-public abstract class ArrayListAdapter<T> extends BaseAdapter {
-    private static final String TAG = "ArrayListAdapter";
-
+public abstract class BoilerplateArrayAdapter<T> extends BaseAdapter {
     /**
      * Adapter's items.
      */
     protected ArrayList<T> mData = new ArrayList<T>();
-
-    /**
-     * Current context.
-     */
-    protected Context mContext;
-
-    public ArrayListAdapter(Context context) {
-        mContext = context;
-    }
 
     @Override
     public int getCount() {
@@ -44,7 +32,7 @@ public abstract class ArrayListAdapter<T> extends BaseAdapter {
 
     @Override
     public long getItemId(final int position) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return position;
     }
 
     /**
@@ -55,7 +43,7 @@ public abstract class ArrayListAdapter<T> extends BaseAdapter {
      */
     public void addItems(T[] items) {
         if (items != null && items.length > 0) {
-            mData.ensureCapacity(items.length);
+            mData.ensureCapacity(mData.size() + items.length);
             mData.addAll(Arrays.asList(items));
             notifyDataSetChanged();
         }
@@ -74,6 +62,11 @@ public abstract class ArrayListAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * Remove an item.
+     *
+     * @param position position to me removed
+     */
     public void removeItem(int position) {
         mData.remove(position);
         notifyDataSetChanged();

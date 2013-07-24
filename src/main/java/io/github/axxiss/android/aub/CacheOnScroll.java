@@ -1,4 +1,4 @@
-package main.java.io.github.axxiss.aub;
+package io.github.axxiss.android.aub;
 
 import android.widget.AbsListView;
 
