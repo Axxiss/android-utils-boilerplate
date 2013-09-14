@@ -1,4 +1,4 @@
-package io.github.axxiss.android.aub.adapters;
+package io.github.axxiss.aub.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;

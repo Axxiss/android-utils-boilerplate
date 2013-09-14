@@ -1,0 +1,45 @@
+group = 'io.github.axxiss'
+version = '0.1.0-SNAPSHOT'
+description = 'Android utilities boilerplate library'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+apply plugin: 'android-library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "18.0.1"
+
+    defaultConfig {
+        versionCode 1
+        versionName version
+        minSdkVersion 7
+        targetSdkVersion 18
+    }
+}
+
+dependencies {
+}
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+        }
+    }
+}
+task install(dependsOn: uploadArchives)

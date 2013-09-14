@@ -1,4 +1,4 @@
-package io.github.axxiss.android.aub.adapters;
+package io.github.axxiss.aub.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +36,8 @@ public abstract class BoilerplateArrayAdapter<T> extends BaseAdapter {
     }
 
     /**
-     * Appends all of the elements in the specified array to the end of this
-     * adapter, maintains order.
+     * Appends all of the elements in the specified array to the end of this adapter, maintains
+     * order.
      *
      * @param items array containing elements to be added to this adapter
      */

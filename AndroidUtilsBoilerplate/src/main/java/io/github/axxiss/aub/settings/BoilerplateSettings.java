@@ -1,4 +1,4 @@
-package io.github.axxiss.android.aub.settings;
+package io.github.axxiss.aub.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,11 +31,11 @@ public class BoilerplateSettings {
     private Context mContext;
 
     /**
-     * Create a new Settings instance getting the default preference. Default preference mode is {@link
-     * Context#MODE_PRIVATE}.
+     * Create a new Settings instance getting the default preference. Default preference mode is
+     * {@link Context#MODE_PRIVATE}.
      * <p/>
-     * To use a custom preference file or different access mode use
-     * {@link #BoilerplateSettings(android.content.Context, String, int)} instead
+     * To use a custom preference file or different access mode use {@link
+     * #BoilerplateSettings(android.content.Context, String, int)} instead
      *
      * @param appContext
      */

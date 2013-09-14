@@ -1,4 +1,4 @@
-package io.github.axxiss.android.aub;
+package io.github.axxiss.aub;
 
 import android.widget.AbsListView;
 
@@ -62,8 +62,7 @@ public abstract class CacheOnScroll implements AbsListView.OnScrollListener {
     }
 
     /**
-     * This method implementation must contain an asynchronous call the fetch
-     * new data.
+     * This method implementation must contain an asynchronous call the fetch new data.
      */
     public abstract void cacheOnBackground(int page);
 }
