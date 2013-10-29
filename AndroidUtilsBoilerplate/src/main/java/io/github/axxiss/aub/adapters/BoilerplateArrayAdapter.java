@@ -6,6 +6,7 @@ import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Extends a {@link BaseAdapter} using an {@link ArrayList} for handle data.
@@ -36,31 +37,34 @@ public abstract class BoilerplateArrayAdapter<T> extends BaseAdapter {
     }
 
     /**
-     * Appends all of the elements in the specified array to the end of this adapter, maintains
+     * Appends all of the elements in the specified collection to the end of this adapter, maintains
      * order.
      *
      * @param items array containing elements to be added to this adapter
      */
-    public void addItems(T[] items) {
-        if (items != null && items.length > 0) {
-            mData.ensureCapacity(mData.size() + items.length);
-            mData.addAll(Arrays.asList(items));
-            notifyDataSetChanged();
-        }
+    public void addItems(Collection<T> items) {
+        mData.ensureCapacity(mData.size() + items.size());
+        mData.addAll(items);
+        notifyDataSetChanged();
     }
+
 
     /**
      * Clear the current adapter and add the items to the adapter.
      */
-    public void refreshAdapter(T[] items) {
+    public void refreshAdapter(Collection<T> items) {
         mData.clear();
-
-        if (items != null) {
-            mData.ensureCapacity(items.length);
-            mData.addAll(Arrays.asList(items));
-        }
-        notifyDataSetChanged();
+        addItems(items);
     }
+
+    public void addItems(T[] items) {
+        addItems(Arrays.asList(items));
+    }
+
+    public void refreshAdapter(T[] items) {
+        refreshAdapter(Arrays.asList(items));
+    }
+
 
     /**
      * Remove an item.
