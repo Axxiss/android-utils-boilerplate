@@ -1,5 +1,5 @@
 group = 'io.github.axxiss'
-version = '0.1.0-SNAPSHOT'
+version = '0.2.0-SNAPSHOT'
 description = 'Android utilities boilerplate library'
 
 buildscript {
@@ -7,10 +7,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:1.1.0'
     }
 }
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
@@ -19,18 +19,15 @@ repositories {
 }
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "18.0.1"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         versionCode 1
         versionName version
         minSdkVersion 7
-        targetSdkVersion 18
+        targetSdkVersion 21
     }
-}
-
-dependencies {
 }
 
 apply plugin: 'maven'
